@@ -1,0 +1,101 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    </head>
+	<body>
+		
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Cart Products</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a href="{% url 'product_filter' pc='All' %}">All</a></li>
+									<li><a href="{% url 'product_filter' pc='Laptop' %}">Laptops</a></li>
+									<li><a href="{% url 'product_filter' pc='Smartphone' %}">Smartphones</a></li>
+									<li><a href="{% url 'product_filter' pc='Camera' %}">Cameras</a></li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										{% if carts %}
+										{% for i in carts %}
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{i.product.product_image.url}}" height="250px"alt="">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{i.product.product_category}}</p>
+												<h3 class="product-name"><a href="#">{{i.product.product_company}}</a></h3>
+												<h4 class="product-price">{{i.product.product_price}}<del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													
+													<a href="{% url 'user_product_detail' pk=i.product.pk %}">
+													<i class="fa fa-eye"></i><span class="tooltipp"></span></a>
+													
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<a href="{% url 'remove_from_cart' pk=i.product.pk %}">
+													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Remove From Cart</button>
+												</a>
+											</div>
+										</div>
+										<!-- /product -->
+										{% endfor %}
+										{% else %}
+											<h3 class="title">No Products In Cart</h3>
+										{% endif %}
+										
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+	</body>
+</html>
+{% endblock %}

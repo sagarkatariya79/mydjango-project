@@ -1,0 +1,86 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    </head>
+	<body>
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">New Products</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
+									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
+									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
+									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										<!-- product -->
+										{% for i in products %}
+										<div class="product">
+											<div class="product-img">
+												<img src="{{i.product_image.url}}" alt="" style="height:250px;">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{i.product_category}}</p>
+												<h3 class="product-name"><a href="#">{{i.product_company}}</a></h3>
+												<h4 class="product-price">{{i.product_price}} </h4>
+												
+												<div class="product-btns">
+													<a href="{% url 'seller_edit_product' pk=i.pk %}"><input type="button" value="EDIT" class="btn btn-primary"></a>
+													<a href="{% url 'seller_delete_product' pk=i.pk %}"><input type="button" value="DELETE" class="btn btn-danger"></a>
+												</div>
+											</div>
+											
+										</div>
+										<!-- /product -->
+										{% endfor %}
+										
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		
+
+		
+
+	</body>
+</html>
+{% endblock %}

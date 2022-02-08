@@ -1,0 +1,49 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    </head>
+	<body>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-12">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Enter OTP</h3>
+							</div>
+							{% if msg %}
+								<p style="color:red;font-size: 20px;">{{msg}}</p>
+							{% endif %}
+							<form name="login" method="post" action="{% url 'verify_otp' %}">
+								{% csrf_token %}
+
+							<div class="form-group">
+								<input type="hidden" name="email" value="{{email}}">
+								<input type="hidden" name="otp" value="{{otp}}">
+								<input class="input" type="text" name="u_otp" placeholder="Enter OTP">
+							</div>
+							
+							<div class="form-group" align="center">
+								<input type="submit" name="action" value="Verify OTP" class="btn btn-primary">
+							</div>
+						</div>
+						</form>						
+					</div>
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+	</body>
+</html>
+{% endblock %}
